@@ -1,0 +1,14 @@
+{
+  "identifier": "com.bradleyberkman.popclip.seq-clip",
+  "name": "Seq Clip",
+  "icon": "symbol:list.number",
+  "description": "Parse a numbered markdown list and push each value to clipboard in reverse order, so Alfred history puts list item 1 at ⌘1.",
+  "actions": [
+    {
+      "title": "Seq Clip",
+      "shell script file": "seq-clip.sh",
+      "after": "show-status",
+      "requirements": ["text", "multiline"]
+    }
+  ]
+}

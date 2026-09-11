@@ -1,0 +1,49 @@
+name: ElevenLabs TTS
+identifier: com.bradleyberkman.popclip.elevenlabs-tts-play
+icon: symbol:ear
+description: Play selected text with ElevenLabs TTS. Click the spinner to stop.
+entitlements: [network]
+actions:
+  - title: ElevenLabs TTS
+    shell script file: script.sh
+    interpreter: /bin/zsh
+    requirements: [text]
+options:
+  - identifier: api_key
+    label: ElevenLabs API Key
+    type: string
+    description: "Your ElevenLabs API key (elevenlabs.io > Profile > API keys)."
+  - identifier: openai_api_key
+    label: OpenAI API Key (fallback)
+    type: string
+    description: "Optional. Used only when the ElevenLabs request fails (quota, auth, outage)."
+  - identifier: voice_id
+    label: Voice ID
+    type: string
+    default value: "21m00Tcm4TlvDq8ikWAM"
+    description: "ElevenLabs voice ID. Default is the premade voice Rachel. Find yours at elevenlabs.io > Voices."
+  - identifier: model_id
+    label: Model ID
+    type: string
+    default value: "eleven_flash_v2_5"
+    description: "eleven_flash_v2_5 (fast) or eleven_multilingual_v2 (quality)"
+  - identifier: speed
+    label: Speed
+    type: string
+    default value: "1.05"
+    description: "Voice speed: 0.7=slower, 1.0=normal, 1.2=faster"
+  - identifier: stability
+    label: Stability
+    type: string
+    default value: "0.30"
+    description: "0.0=more variable/expressive, 1.0=more stable/consistent"
+  - identifier: similarity
+    label: Similarity
+    type: string
+    default value: "0.75"
+    description: "How closely to match the voice: 0.0=low, 1.0=high"
+  - identifier: config_file_keys
+    label: Read keys from ~/.config/tts
+    type: boolean
+    default value: false
+    description: "Off by default. When on, empty key fields fall back to ~/.config/tts/elevenlabs_api_key and ~/.config/tts/openai_api_key."

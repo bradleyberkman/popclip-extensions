@@ -1,0 +1,27 @@
+name: ci
+on: [push, pull_request]
+jobs:
+  check:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Shell syntax
+        run: |
+          set -e
+          for f in */*.sh; do
+            echo "bash -n $f"; bash -n "$f"
+            if head -1 "$f" | grep -q zsh; then echo "zsh -n $f"; zsh -n "$f"; fi
+          done
+      - name: Config files parse
+        run: |
+          set -e
+          for f in */Config.json; do
+            echo "json $f"; python3 -c "import json,sys; json.load(open(sys.argv[1]))" "$f"
+          done
+          if python3 -c "import yaml" 2>/dev/null; then
+            for f in */Config.yaml; do
+              echo "yaml $f"; python3 -c "import yaml,sys; yaml.safe_load(open(sys.argv[1]))" "$f"
+            done
+          else
+            echo "pyyaml not available; skipping yaml parse"
+          fi

@@ -1,0 +1,8 @@
+name: Reverse Copy Fields
+identifier: com.bradleyberkman.popclip.reverse-copy-fields
+icon: symbol:clipboard
+actions:
+  - title: Reverse Copy
+    shell script file: script.sh
+    requirements: [text]
+    after: show-status
