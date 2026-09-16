@@ -42,7 +42,7 @@ if not values:
 for v in reversed(values):
     p = subprocess.Popen(['pbcopy'], stdin=subprocess.PIPE)
     p.communicate(v.encode('utf-8'))
-    time.sleep(0.3)
+    time.sleep(1)
 
 print(f'{len(values)} values pushed (item 1 → ⌘1)')
 PYEOF
